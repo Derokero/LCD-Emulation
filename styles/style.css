@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* font-family: 'Press Start 2P', cursive; */
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --global_width: 95vw;
+    --global_lcdWidth: 90vw;
+    --global_fontSize: 5vw;
+    --global_sliderWidth: 50vw;
+}
+
+body {
+    background-color: bisque;
+}
+
+/* Page styles */
+header {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 40px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+h2 {
+    margin-top: 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+small {
+    letter-spacing: 1.4px;
+}
+
+a {
+    font-size: 1rem;
+}
+
+hr {
+    border: 1px solid #000;
+    color: black;
+    margin: 20px 10vw;
+}
+
+#input-wrapper {
+    margin-top: 40px;
+    text-align: center;
+}
+
+label {
+    font-family: 'Press Start 2P', cursive;
+    display: block;
+    font-size: var(--global_fontSize);
+    margin: 10px 0 10px 0;
+}
+
+input {
+    width: var(--global_width);
+    height: 40px;
+    padding: 10px;
+    font-size: var(--global_fontSize);
+    font-family: 'Press Start 2P', cursive;
+}
+
+select {
+    width: var(--global_width);
+    text-align: center;
+    text-align-last: center;
+    padding: 5px;
+    font-size: var(--global_fontSize);
+    font-family: 'Press Start 2P', cursive;
+
+    cursor: pointer;
+    color: #444;
+}
+
+option {
+    height: 40px;
+    color: #444;
+}
+
+input[type=range] {
+    cursor: grab;
+}
+
+
+/* LCD Styles */
+#screen {
+    width: var(--global_lcdWidth);
+    margin: 20px auto;
+    padding: 5px;
+    border: 10px ridge #222;
+    background-color: #348a3a;
+    justify-content: space-evenly;
+    box-shadow: 2px 2px 2px #000;
+}
+
+.cell {
+    margin: 2px;
+}
+
+/* Make sure the pixels are square */
+.pixel:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.pixel {
+    margin: 1px;
+    background-color: #449444;
+}
+
+.pixel.on {
+    background-color: #000;
+}
+
+@media only screen and (min-width: 950px) {
+    :root {
+        --global_width: 50vw;
+        --global_fontSize: 1vw;
+        --global_sliderWidth: 20vw;
+        --global_lcdWidth: 80vw;
+    }
+
+    #lcdCols {
+        width: var(--global_sliderWidth);
+    }
+
+    #lcdRows {
+        width: var(--global_sliderWidth);
+    }
+
+    #textInput {
+        position: sticky;
+        top: 0;
+    }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Scripts -->
+    <script src="./src/pageInit.js" type="module"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <title>LCD Emulation</title>
+</head>
+
+<body>
+    <header>
+        <h1>Dot-matrix LCD emulation</h1>
+        <hr>
+        <h2>When low level and high level collide :)</h2>
+        <br>
+        <small>*This may be very intensive for the browser because we're simulating real pixels being drawn and changing a lot of elements!<br>
+            Also might not work good on small screens! You've been warned!
+        </small>
+        <br>
+        <small>Fonts are fetched from <a href="https://github.com/basti79/LCD-fonts">here</a></small>
+    </header>
+    <div id="input-wrapper">
+        <label for="textInput">Enter text:</label>
+        <input type="text" id="textInput" placeholder="Your text">
+        <br>
+
+        <label for="fontSelect">Select font:</label>
+        <select name="fonts" id="fontSelect">
+            <!-- Managed by JS -->
+        </select>
+
+        <br>
+        <br>
+
+        <label for="lcdCols">LCD Columns</label>
+        <input type="range" name="cols" id="lcdCols" min="5" max="30" step="1">
+
+        <label for="lcdRows">LCD Rows</label>
+        <input type="range" name="rows" id="lcdRows" min="1" max="8" step="1">
+
+    </div>
+
+</body>
+
+</html>
