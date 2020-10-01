@@ -101,15 +101,24 @@ class Screen {
 
 // Fetch LCD fonts
 async function getBitmaps(selection) {
-    let rawBitmap = await fetch("https://raw.githubusercontent.com/basti79/LCD-fonts/master/" + selection);
-    rawBitmap = await rawBitmap.text(); // Convert to text
-    const bitmaps = rawBitmap.match(/(?<={).*(?=})/g); // Extract bitmaps using regex magic :)
-    return [...bitmaps]; // Return array of fonts
+    try {
+        let rawBitmap = await fetch("https://raw.githubusercontent.com/basti79/LCD-fonts/master/" + selection);
+        rawBitmap = await rawBitmap.text(); // Convert to text
+        const bitmaps = rawBitmap.match(/(?<={).*(?=})/g); // Extract bitmaps using regex magic :)
+        return [...bitmaps]; // Return array of fonts
+    } catch (err) {
+        throw "Failed to load font!\n Make sure you can access the raw files from: https://github.com/basti79/LCD-fonts";
+    }
 }
 
 export default async function initLCD(cols, rows, font) {
-    const cellSize = font.match(/\dx\d+/g)[0].split("x"); // Extract cell size from font name
-    const bitmap = await getBitmaps(font); // Fetch desired font
-    const LCD = new Screen(cols, rows, cellSize, bitmap); // Initialize screen
-    return LCD; // Return promise to use in pageInit.js
+    try {
+        const cellSize = font.match(/\dx\d+/g)[0].split("x"); // Extract cell size from font name
+        const bitmap = await getBitmaps(font); // Fetch desired font
+        const LCD = new Screen(cols, rows, cellSize, bitmap); // Initialize screen
+        return LCD; // Return promise to use in pageInit.js
+    } catch (err) {
+        console.error(err);
+        return Promise.reject("Failed to initialize LCD!");
+    }
 }

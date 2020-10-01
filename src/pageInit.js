@@ -1,6 +1,7 @@
 import initLCD from "./LCD.js"; // initLCD()
 
 // Available font bitmaps
+// https://github.com/basti79/LCD-fonts
 const BITMAPS = [
     "4x6_horizontal_LSB_2.h",
     "5x8_horizontal_LSB_2.h",
@@ -26,6 +27,7 @@ const BITMAPS = [
 
     // Initialize default screen
     let LCDPromise = initLCD(10, 2, "4x6_horizontal_LSB_2.h");
+    LCDPromise.catch(err => console.error(err));
 
     // Generate font selections in the page
     (function selectionOptions() {
@@ -35,15 +37,15 @@ const BITMAPS = [
             option.innerText = font.replaceAll(/_.*/g, "");
             select.appendChild(option);
         }
-    })()
+    })();
 
 
     // Update screen
     function updateLCD() {
         LCDPromise = initLCD(sliderCols.value, sliderRows.value, select.value);
+        LCDPromise.catch(err => console.error(err));
         textInput.value = "";
     }
-
 
     // Event listeners //
 
@@ -52,6 +54,8 @@ const BITMAPS = [
         LCDPromise.then(LCD => {
             LCD.clearScreen();
             LCD.writeToScreen(textInput.value)
+        }).catch(err => {
+            console.error(err);
         });
     });
 
@@ -68,7 +72,7 @@ const BITMAPS = [
     });
 
     sliderRows.addEventListener("change", () => {
-        updateLCD()
+        updateLCD();
     });
 
     sliderRows.addEventListener("input", () => {
@@ -76,4 +80,4 @@ const BITMAPS = [
     });
 
 
-})()
+})();
