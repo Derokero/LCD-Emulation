@@ -7,3 +7,6 @@ A combination between low level and high level :)
 
 
 Fonts are fetched in a raw format from [here](https://github.com/basti79/LCD-fonts)
+
+
+Play around with it here: https://derokero.github.io/LCD-Emulation/
